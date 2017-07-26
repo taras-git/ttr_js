@@ -27,13 +27,13 @@ Running the tests
 Open a new console. 
 Start up a server with: $webdriver-manager start
 (Hint: you may need to run $webdriver-manager update, in oder to obtain the last version of driver)
-Open another console and navigate to folder where the current project conf.js file is, i.e. ngTestProject/e2e/conf
-Run the tests : $protractor conf.js --suite home,add,update,delete
+Open another console and navigate to folder where the current project conf.js file is, i.e. PropertyFinderTestProject/e2e/conf
+Run the tests : $protractor conf.js --suite home,findAgent,collectAgentInfo
 
 
 
 Test results
 
-Test results are stored in ngTestProject/e2e/conf/target folder.
+Test results are stored in PropertyFinderTestProject/e2e/results/ folder.
 There are screenshots and HTML report (my-report.html).
 Every new test run rewrites the old reports.
