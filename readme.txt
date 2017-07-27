@@ -129,3 +129,34 @@ of testcase CollectAgentInfoTest
 
 
 Every new test run rewrites the old reports.
+
+
+
+
+PROJECT STRUCTURE:
+
+- root (PropertyFinderTestProject)
+|
+|--e2e
+    |
+    |--conf (configure files)
+    |
+    |--pages
+    |    |
+    |    |--collectAgentInfoPage
+    |    |
+    |    |--findAgentPage
+    |    |
+    |    |--homePage
+    |
+    |
+    |--results
+    |	 |
+    |    |--agent_screenshot
+    |    |
+    |    |--agent_info_txt
+    |    |
+    |    |--screenshots
+    |
+    |--sample_video
+
