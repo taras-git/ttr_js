@@ -13,7 +13,6 @@ var Homepage = function() {
     this.buttonFind				= element(by.css('[type="submit"]'));
     this.tabFindAgent			= element(by.css('.js-find-agent'));
 
-
 };
 
 module.exports = Homepage;

@@ -16,8 +16,9 @@ describe('Property Finder Find Agent page', function () {
 
 
     it('should compare agents count', function () {
-        
+        // Open Home page
         homePage.get(params.url.homeAE);
+        // Clic on Agent tab
         homePage.tabFindAgent.click();
 
         var EC = protractor.ExpectedConditions;
@@ -28,7 +29,7 @@ describe('Property Finder Find Agent page', function () {
             expect(tagline.getText()).toEqual('Great agents find great properties.');
         });
 
-        // choose agents with English, Arabic and French
+        // choose agents with English, Arabic and French languages
         findAgentPage.languagesDropDown.click();
         findAgentPage.languageArabic.click();
         findAgentPage.languageEnglish.click();
@@ -38,7 +39,7 @@ describe('Property Finder Find Agent page', function () {
         // get agents count with Arabic, English and French
         var agentsArEnFr = findAgentPage.getAgentsCount(findAgentPage.agentsFound);
 
-        // choose agents with Hindi
+        // choose agents with Hindi language
         findAgentPage.buttonReset.click()
         findAgentPage.languagesDropDown.click();
         findAgentPage.languageHindi.click();
@@ -51,27 +52,7 @@ describe('Property Finder Find Agent page', function () {
         
         // compare two values for agents
         expect(agentsArEnFr).toBeGreaterThan(agentsIn);
+    
     });
-
-
-    it('should collect data of first agent', function () {
-        homePage.get(params.url.homeAE);
-        homePage.tabFindAgent.click();
-
-        var EC = protractor.ExpectedConditions;
-        var tagline = findAgentPage.tagLine;
-
-        // assert that the correct message is displayed
-        browser.wait(EC.visibilityOf(tagline), params.wait.fiveSec).then(function () {
-            expect(tagline.getText()).toEqual('Great agents find great properties.');
-        });
-
-        findAgentPage.firstAgent.click();
-        // Waits for the URL to changed (contain 'agent')
-        browser.wait(EC.urlContains('/agent/'), 5000);
-
-
-    });
-
 
 });

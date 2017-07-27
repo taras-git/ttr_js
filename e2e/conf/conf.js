@@ -9,7 +9,7 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
     capabilities: {
-        'browserName': 'firefox',
+        'browserName': 'chrome',
         chromeOptions: {
             args: [
                 '--start-maximized',
@@ -50,6 +50,15 @@ exports.config = {
 
     onPrepare: function() {
         jasmine.getEnv().addReporter(reporter);
+        // THESE SCRIPT IS FOR FIREFOX ONLY (maximize window) 
+        // browser.driver.executeScript(function() {
+        //     return {
+        //         width: window.screen.availWidth,
+        //         height: window.screen.availHeight
+        //     };
+        // }).then(function(result) {
+        //     browser.driver.manage().window().setSize(result.width, result.height);
+        // });
     },
 
     afterLaunch: function(exitCode) {

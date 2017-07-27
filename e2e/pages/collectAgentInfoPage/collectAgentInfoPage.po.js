@@ -4,14 +4,7 @@ var fs = require('fs');
 
 var collectAgentInfoPage = function() {
 
-    var txtFile = "../results/agent_info.txt";
-    var pngFile = "../results/screenshot/scr";
-    
-    this.writeScreenShot = function() {
-        var stream = fs.createWriteStream("../results/screenshot/scr", 'w');
-        stream.write(new Buffer("png", 'base64'));
-        stream.end();
-    }
+    var txtFile = "../results/agent_txt_info/agent_info.txt";
 
     var writer = function(fd){
         fs.writeFile(txtFile, fd, function (err) {
@@ -55,6 +48,7 @@ var collectAgentInfoPage = function() {
                         });
             };
 
+
     this.appendPhone = function(element) {
             return element
                     .getAttribute("data-phone")
@@ -62,6 +56,16 @@ var collectAgentInfoPage = function() {
                         appender(phone);
                         });
             };
+
+
+    this.captureScreen = function(screenshotName){
+        browser.takeScreenshot().then(function(screenShot) {
+              fs.writeFile(screenshotName, screenShot, 'base64', function (err) {
+                    if (err) throw err;
+                    console.log('Screenshot saved.');
+            });
+        });
+    }
 
 
     this.header                = element(by.id('header'));
@@ -79,7 +83,6 @@ var collectAgentInfoPage = function() {
 
     this.changeToArabic        = element(by.css('.ar.change-language-link'));
     this.changeToEnglish       = element(by.css('.en.change-language-link'));
-  
     
 };
 
