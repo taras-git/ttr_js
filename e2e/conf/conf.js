@@ -21,7 +21,6 @@ exports.config = {
 
     params: {
         url: {
-            homeQA : 'http://propertyfinder.qa',
             homeAE : 'http://propertyfinder.ae'
         },
         wait: {
