@@ -3,42 +3,41 @@
 var homePage = require('./homePage.po.js');
 var homePage = new homePage()
 
-var FindAgentPage = require('../findAgentPage/findAgentPage.po.js');
-var findAgentPage = new FindAgentPage()
-
 var params = browser.params;
 
-
-describe('Property Finder AE home page', function () {
+describe('Time To Riot home page', function () {
     beforeEach(function () {
-        return browser.ignoreSynchronization = true;
     });
-
 
     it('should be correctly displayed', function () {
-        //open home page
-        homePage.get(params.url.homeAE);
-        
-        // verify text in page header
-        expect(homePage.header.getText()).toContain('BUY\nRENT\nCOMMERCIAL\nFIND AGENT\nNEW PROJECTS\nMORE\nUAE\nعربي');
-    
+         homePage.get(params.url.homeURL);
+         expect(homePage.tab_jobs.getText()).toContain('Jobs');
     });
 
 
-    it('should go to Find Agent page after press tab Find Agent', function () {
-        // open home page
-        homePage.get(params.url.homeAE);
-        // click Find Agent tab
-        homePage.tabFindAgent.click();
+    it('should go to Jobs page and fill all the fields', function () {
+        homePage.get(params.url.homeURL);
+        homePage.tab_jobs.click();
+        homePage.button_add.click();
+        homePage.company_name.sendKeys("Mons");
+        homePage.dropdown('Mons').click();
+        homePage.email.sendKeys("brin@gmail.com");
+        homePage.scroll_to(homePage.title);
+        homePage.title.sendKeys("ceo");
+        homePage.location.sendKeys("Palo-Alto");
+        homePage.scroll_to(homePage.salary);
+        homePage.salary.sendKeys("1000000");
+        homePage.clear_and_send_keys(homePage.currency, "USD");
+        homePage.dropdown('USD').click();
+        homePage.scroll_to(homePage.publish_at);
+        homePage.clear_and_send_keys(homePage.publish_at, "2017-20-12");
+        homePage.clear_and_send_keys(homePage.apply_by, "2017-22-12");
+        homePage.available.click();
+        homePage.featured.click();
+        homePage.description.sendKeys("Awsome");
 
-        var EC = protractor.ExpectedConditions;
-        var url = findAgentPage.getUrl();
-        var tagline = findAgentPage.tagLine;
-
-        // Verify correct message on page displayed
-        browser.wait(EC.visibilityOf(tagline), params.wait.fiveSec).then(function () {
-            expect(tagline.getText()).toEqual('Great agents find great properties.');
-        });
+        // wait to check if everything is ok
+        browser.sleep(10000);
     });
 
 });

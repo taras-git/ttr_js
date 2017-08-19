@@ -1,12 +1,6 @@
 INFO AND PREREQUISITES
 
 
-Testing framework was developed on Ubuntu 16.04 LTS (64-bit),
-Chrome Version 59.0.3071.115 (Official Build) (64-bit),
-Firefox Version 54.0
-
-
-
 PROTRACTOR (Javascript end-to-end /e2e/ testing framework) 
 with JASMINE (behavior-driven development framework) 
 were chosen to create project for testing PropertyFinder web application.
@@ -41,8 +35,8 @@ Each screen is described in its own class(page), including:
 	- all elemets (buttons, links ets) that are used in the testcase;
 	- all functions that are used in the testcase
 
-Testcases are described in separate classes(i.e: CollectAgentInfoTest.spec.js)
-Testcases use pages (i.e: CollectAgentInfoPage.po.js) to communicate with corresponded page/element
+Testcases are described in separate "spec" classes(i.e: homeTest.spec.js)
+Testcases use "po"(page object) pages (i.e: homePage.po.js) to communicate with corresponded page/element
 
 
 
@@ -87,8 +81,8 @@ Test are configured using conf.js file (e2e/conf/conf.js)
 
     URL can be configured in "params" section:
 	    params: {
-        	url: {
-            	homeAE : 'http://propertyfinder.ae'
+        url: {
+            homeURL : 'http://new.timetoriot.com/'
         	}    
         }
 
@@ -105,8 +99,8 @@ Start up a server with: $webdriver-manager start
 (Hint: you may need to run $webdriver-manager update, in oder to obtain the last version of driver)
 
 - Open another console and navigate to folder where the current project conf.js file is,
-i.e. PropertyFinderTestProject/e2e/conf
-Run the tests : $protractor conf.js --suite home,findAgent,collectAgentInfo
+i.e. e2e/conf/
+Run the tests : $protractor conf.js --suite home
 
 
 
@@ -121,42 +115,4 @@ Test results are stored in e2e/results/ folder:
 e2e/results/screenshots holds both HTML-report of passed/failed test,
 and screenshots of all test (passed and failed)
 
-e2e/results/agent_screenshots holds screenshots (agent info in English and Arabic)
-of testcase CollectAgentInfoTest
-
-e2e/results/agent_txt_info holds text file (collected info about agent)
-of testcase CollectAgentInfoTest
-
-
 Every new test run rewrites the old reports.
-
-
-
-
-PROJECT STRUCTURE:
-
-- root (PropertyFinderTestProject)
-|
-|--e2e
-    |
-    |--conf (configure files)
-    |
-    |--pages
-    |    |
-    |    |--collectAgentInfoPage
-    |    |
-    |    |--findAgentPage
-    |    |
-    |    |--homePage
-    |
-    |
-    |--results
-    |	 |
-    |    |--agent_screenshot
-    |    |
-    |    |--agent_info_txt
-    |    |
-    |    |--screenshots
-    |
-    |--sample_video
-

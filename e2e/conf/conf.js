@@ -9,19 +9,19 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
     capabilities: {
-        'browserName': 'chrome',
-        chromeOptions: {
-            args: [
-                '--start-maximized',
-                // "--headless", 
-                // "--disable-gpu"
-            ]
-        }
+        'browserName': 'firefox',
+        // chromeOptions: {
+        //     args: [
+        //         '--start-maximized',
+        //         // "--headless",
+        //         // "--disable-gpu"
+        //     ]
+        // }
     },
 
     params: {
         url: {
-            homeAE : 'http://propertyfinder.ae'
+            homeURL : 'http://new.timetoriot.com/'
         },
         wait: {
             fiveSec: 5000
@@ -30,8 +30,6 @@ exports.config = {
 
     suites: {
         home:                 '../pages/homePage/*spec.js',
-        findAgent:            '../pages/findAgentPage/*spec.js',
-        collectAgentInfo:     '../pages/collectAgentInfoPage/*spec.js'
     },
 
     jasmineNodeOpts: {
@@ -50,14 +48,14 @@ exports.config = {
     onPrepare: function() {
         jasmine.getEnv().addReporter(reporter);
         // THESE SCRIPT IS FOR FIREFOX ONLY (maximize window) 
-        // browser.driver.executeScript(function() {
-        //     return {
-        //         width: window.screen.availWidth,
-        //         height: window.screen.availHeight
-        //     };
-        // }).then(function(result) {
-        //     browser.driver.manage().window().setSize(result.width, result.height);
-        // });
+        browser.driver.executeScript(function() {
+            return {
+                width: window.screen.availWidth,
+                height: window.screen.availHeight
+            };
+        }).then(function(result) {
+            browser.driver.manage().window().setSize(result.width, result.height);
+        });
     },
 
     afterLaunch: function(exitCode) {
